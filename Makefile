@@ -14,7 +14,11 @@ include stuff.mk
 
 ##################################################################
 
-## Content
+# Trying to build things with Chyun
+.PRECIOUS: download_files/%fl.sav 
+download_files/%fl.sav: download_files/%SV.ZIP
+	unzip -d download_files -LL -o $<
+	touch $@
 
 ######################################################################
 
