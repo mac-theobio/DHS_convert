@@ -2,7 +2,7 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: convert/Bangladesh_V.DHS.V.men.Rout 
+target pngtarget pdftarget vtarget acrtarget: Makefile 
 
 ##################################################################
 
@@ -16,6 +16,8 @@ Convert:
 Sources += Makefile .gitignore README.md stuff.mk LICENSE.md
 Sources += $(wildcard *.tmp)
 
+subdirs = convert download download_scripts
+
 include stuff.mk
 
 use_simple:
@@ -27,25 +29,25 @@ use_simple:
 
 ### Directories
 
-Makefile: convert download download_scripts overview
+Makefile: DHS_overview
+	cp $(gitroot)/DHS_overview/standard.files.mk .
 
 ## Place to keep converted files
-convert:
-	/bin/ln -s $(Drop)/DHS_convert $@
+convert: $(Drop)/DHS_convert
+	$(link)
+$(Drop)/DHS_convert:
+	$(mkdir)
 
 ## Place to keep downloaded files (separated for space, I guess)
-download:
-	/bin/ln -s $(Drop)/DHS_downloads $@
+download: $(Drop)/DHS_downloads
+	$(link)
+$(Drop)/DHS_downloads:
+	$(mkdir)
 download/%:
 	cd download_scripts && $(MAKE) files/$*
 
-download_scripts:
-	/bin/ln -s $(gitroot)/DHS_downloads $@
-
-overview: $(gitroot)/DHS_overview
+download_scripts: $(gitroot)/DHS_downloads
 	$(link)
-overview/%:
-	$(makethere)
 
 ##################################################################
 
@@ -63,10 +65,11 @@ convert/keir52fl.sav:
 
 ### Reading, trimming ...
 
+Sources += $(wildcard *.R)
+
 ### Get fancy filenames
+
 -include standard.files.mk
-standard.files.mk: %: overview/%
-	$(copy)
 
 ### GPS files
 .PRECIOUS: convert/%.gps.Rout
