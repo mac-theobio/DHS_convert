@@ -2,7 +2,7 @@
 ### Hooks for the editor to set the default target
 current: target
 
-target pngtarget pdftarget vtarget acrtarget: convert/Bangladesh_V.DHS.V.women.Rout 
+target pngtarget pdftarget vtarget acrtarget: convert/Bangladesh_V.DHS.V.men.Rout 
 
 ##################################################################
 
@@ -11,10 +11,16 @@ target pngtarget pdftarget vtarget acrtarget: convert/Bangladesh_V.DHS.V.women.R
 Convert:
 	/bin/ln -s ~/Downloads/$@ .
 
-# make files
+## make files
 
-Sources = Makefile .gitignore README.md stuff.mk LICENSE.md
+Sources += Makefile .gitignore README.md stuff.mk LICENSE.md
+Sources += $(wildcard *.tmp)
+
 include stuff.mk
+
+use_simple:
+	$(LNF) simple.tmp local.mk
+
 # include $(ms)/perl.def
 
 ##################################################################
@@ -23,9 +29,11 @@ include stuff.mk
 
 Makefile: convert download download_scripts overview
 
+## Place to keep converted files
 convert:
 	/bin/ln -s $(Drop)/DHS_convert $@
 
+## Place to keep downloaded files (separated for space, I guess)
 download:
 	/bin/ln -s $(Drop)/DHS_downloads $@
 download/%:
@@ -34,8 +42,8 @@ download/%:
 download_scripts:
 	/bin/ln -s $(gitroot)/DHS_downloads $@
 
-overview:
-	/bin/ln -s $(gitroot)/DHS_overview $@
+overview: $(gitroot)/DHS_overview
+	$(link)
 overview/%:
 	$(makethere)
 
@@ -92,6 +100,7 @@ convert/Bangladesh_V.DHS.V.women.Rout:
 
 -include $(ms)/git.mk
 -include $(ms)/visual.mk
+-include $(ms)/linkdirs.mk
 
 -include $(ms)/wrapR.mk
 # -include $(ms)/oldlatex.mk
