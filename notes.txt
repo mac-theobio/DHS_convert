@@ -1,0 +1,5 @@
+Had a long disaster trying to get this to make testdir/
+
+The problem seems to be including a made makefile. Finding it very hard to trace how that works.
+
+Solution may well be to only use the made makefile when making the .Rout targets.
