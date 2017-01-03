@@ -1,1 +1,1 @@
-This README was made automatically by makestuff and should be changed.
+This repo is for scripts that 
