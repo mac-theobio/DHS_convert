@@ -57,6 +57,8 @@ convert/keir52fl.sav:
 
 ######################################################################
 
+Sources += $(wildcard *.R)
+
 ### Reading, trimming ...
 
 ### Get fancy filenames
