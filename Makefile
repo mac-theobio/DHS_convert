@@ -76,23 +76,23 @@ convert/%.hiv.Rout: convert.R convert_hiv.R
 	$(run-R)
 
 ### Dataset files 
+### Separate specifications for each phase!
+### Fix (or make sure to add the next phase before it makes you crazy!)
 .PRECIOUS: convert/%.AIS.V.adults.Rout convert/%.AIS.VI.adults.Rout
 convert/%.AIS.V.adults.Rout convert/%.AIS.VI.adults.Rout: convert.R convert_dataset.R
 	$(run-R)
 
-.PRECIOUS: convert/%.DHS.IV.women.Rout convert/%.DHS.V.women.Rout convert/%.DHS.VI.women.Rout
-convert/%.DHS.IV.women.Rout convert/%.DHS.V.women.Rout convert/%.DHS.VI.women.Rout: convert.R convert_dataset.R
+.PRECIOUS: convert/%.DHS.IV.women.Rout convert/%.DHS.V.women.Rout convert/%.DHS.VI.women.Rout convert/%.DHS.VII.women.Rout
+convert/%.DHS.IV.women.Rout convert/%.DHS.V.women.Rout convert/%.DHS.VI.women.Rout convert/%.DHS.VII.women.Rout: convert.R convert_dataset.R
 	$(run-R)
 
-.PRECIOUS: convert/%.DHS.IV.men.Rout convert/%.DHS.V.men.Rout convert/%.DHS.VI.men.Rout
-convert/%.DHS.IV.men.Rout convert/%.DHS.V.men.Rout convert/%.DHS.VI.men.Rout: convert.R  convert_mnames.R convert_dataset.R
+.PRECIOUS: convert/%.DHS.IV.men.Rout convert/%.DHS.V.men.Rout convert/%.DHS.VI.men.Rout convert/%.DHS.VII.men.Rout
+convert/%.DHS.IV.men.Rout convert/%.DHS.V.men.Rout convert/%.DHS.VI.men.Rout convert/%.DHS.VII.men.Rout: convert.R  convert_mnames.R convert_dataset.R
 	$(run-R)
 
-.PRECIOUS: convert/%.DHS.IV.cr.Rout convert/%.DHS.V.cr.Rout convert/%.DHS.VI.cr.Rout
-convert/%.DHS.IV.cr.Rout convert/%.DHS.V.cr.Rout convert/%.DHS.VI.cr.Rout: convert.R  convert_dataset.R
+.PRECIOUS: convert/%.DHS.IV.cr.Rout convert/%.DHS.V.cr.Rout convert/%.DHS.VI.cr.Rout convert/%.DHS.VII.cr.Rout
+convert/%.DHS.IV.cr.Rout convert/%.DHS.V.cr.Rout convert/%.DHS.VI.cr.Rout convert/%.DHS.VII.cr.Rout: convert.R  convert_dataset.R
 	$(run-R)
-
-convert/Bangladesh_V.DHS.V.women.Rout:
 
 ##################################################################
 
